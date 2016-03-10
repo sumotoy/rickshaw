@@ -8,6 +8,7 @@ Rickshaw.Graph.Behavior.Series.Toggle = function(args) {
 	var self = this;
 
 	this.addAnchor = function(line) {
+
 		var anchor = document.createElement('a');
 		anchor.innerHTML = '&#10004;';
 		anchor.classList.add('action');
@@ -22,6 +23,8 @@ Rickshaw.Graph.Behavior.Series.Toggle = function(args) {
 				line.series.disable();
 				line.element.classList.add('disabled');
 			}
+
+			self.graph.update();
 
 		}.bind(this);
 		
@@ -68,12 +71,15 @@ Rickshaw.Graph.Behavior.Series.Toggle = function(args) {
 
                         }
 
+                        self.graph.update();
+
                 };
 
 	};
 
 	if (this.legend) {
 
+		var $ = jQuery;
 		if (typeof $ != 'undefined' && $(this.legend.list).sortable) {
 
 			$(this.legend.list).sortable( {
@@ -108,12 +114,10 @@ Rickshaw.Graph.Behavior.Series.Toggle = function(args) {
 				}
 				
 				s.disabled = true;
-				self.graph.update();
 			};
 
 			s.enable = function() {
 				s.disabled = false;
-				self.graph.update();
 			};
 		} );
 	};

@@ -20,6 +20,7 @@ Rickshaw.Graph.Smoother = Rickshaw.Class.create({
 	build: function() {
 
 		var self = this;
+		var $ = jQuery;
 
 		if (this.element) {
 			$( function() {
@@ -28,7 +29,6 @@ Rickshaw.Graph.Smoother = Rickshaw.Class.create({
 					max: 100,
 					slide: function( event, ui ) {
 						self.setScale(ui.value);
-						self.graph.update();
 					}
 				} );
 			} );
